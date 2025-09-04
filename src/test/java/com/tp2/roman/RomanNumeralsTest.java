@@ -1,30 +1,35 @@
 package com.tp2.roman;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RomanNumeralsTest {
 
-    // TODO: Replace these lines with your tests
+    private final RomanNumerals roman = new RomanNumerals();
+
     @Test
-    void exampleTest(){
-        assertEquals(4, 2 + 1);
+    void casosBasicos() {
+        assertEquals("I", roman.convert(1));
+        assertEquals("V", roman.convert(5));
+        assertEquals("X", roman.convert(10));
+        assertEquals("L", roman.convert(50));
+        assertEquals("C", roman.convert(100));
+        assertEquals("D", roman.convert(500));
+        assertEquals("M", roman.convert(1000));
     }
 
-//    Missing tests:
-//
-//- Convert 1 to "I"
-//- Convert 5 to "V"
-//- Convert 10 to "X"
-//- Convert 4 to "IV" (subtraction case)
-//- Convert 9 to "IX" (subtraction case)
-//- Convert 40 to "XL"
-//- Convert 50 to "L"
-//- Convert 90 to "XC"
-//- Convert 100 to "C"
-//- Convert 400 to "CD"
-//- Convert 500 to "D"
-//- Convert 900 to "CM"
-//- Convert 1000 to "M"
-//- Convert complex numbers like 1994 to "MCMXCIV"
+    @Test
+    void casosDeSustraccion() {
+        assertEquals("IV", roman.convert(4));
+        assertEquals("IX", roman.convert(9));
+        assertEquals("XL", roman.convert(40));
+        assertEquals("XC", roman.convert(90));
+        assertEquals("CD", roman.convert(400));
+        assertEquals("CM", roman.convert(900));
+    }
+
+    @Test
+    void casoComplejo() {
+        assertEquals("MCMXCIV", roman.convert(1994));
+    }
 }
